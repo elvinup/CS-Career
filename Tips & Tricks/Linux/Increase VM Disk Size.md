@@ -1,5 +1,5 @@
 
-```
+```bash
 #!/bin/bash
 # 1. Says what the storage device is called - Format: sdX
 dmesg | tail # Let's says it's sdc
