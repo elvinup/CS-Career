@@ -18,19 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "f377d3ef090be3e8",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.4.5"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -157,7 +146,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f377d3ef090be3e8",
+  "active": "a6186b260c4081b4",
   "lastOpenFiles": [
     "Tips & Tricks/Linux/Increase VM Disk Size.md",
     "Tips & Tricks/Linux",
