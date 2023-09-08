@@ -1,3 +1,5 @@
+## RTX
+
 Install `rtx` to install most tools
 
 ```bash

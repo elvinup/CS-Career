@@ -37,8 +37,9 @@ rtx global go@latest
 rtx global minikube@latest
 ```
 
-## Using k8s
-### Start KIND cluster
+## Using k8s locally
+
+## KIND (K8s-IN-Docker) cluster
 
 **First time**:
 Open `podman-desktop` and go to Settings -> Resources -> KIND -> Create new and choose default settings and click `Create`

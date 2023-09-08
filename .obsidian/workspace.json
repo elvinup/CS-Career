@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
+                "file": "Setup/RTX.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
+                "file": "Setup/RTX.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
+                "file": "Setup/RTX.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md"
+                "file": "Setup/RTX.md"
               }
             }
           }
@@ -148,10 +148,14 @@
   },
   "active": "a6186b260c4081b4",
   "lastOpenFiles": [
-    "Tips & Tricks/Kubernetes/Ubuntu K8s Workstation.md",
-    "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
-    "Tips & Tricks/Workstation.md",
+    "Setup/Workstation.md",
+    "Setup/RTX.md",
     "Tips & Tricks/Linux/Increase VM Disk Size.md",
+    "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
+    "Tips & Tricks/Kubernetes/Ubuntu K8s Workstation.md",
+    "README.md",
+    "Setup",
+    "Tips & Tricks/Untitled.md",
     "Tips & Tricks/Kubernetes",
     "Tips & Tricks/Linux",
     "Tips & Tricks/Kubernetes",
@@ -160,7 +164,6 @@
     "Tips & Tricks/Docker",
     "Tips & Tricks/Bash/Untitled",
     "Tips & Tricks/Bash",
-    "Tips & Tricks",
-    "Experiences"
+    "Tips & Tricks"
   ]
 }

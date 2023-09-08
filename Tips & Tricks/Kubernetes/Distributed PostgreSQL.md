@@ -26,7 +26,7 @@ kubectl -n postgres get secret postgres-cluster-example-superuser -o jsonpath='{
 # Port forward to access the primary locally. From here we can use anything to connect to port 5432!
 kubectl -n postgres port-forward postgres-cluster-example-1 5432:5432
 
-# Access postgresql via CLI!
-psql -h localhost -p 5432 -U postgres
+# Access postgresql via CLI! (In a separate tab) Disable SSL, less buggy
+psql "sslmode=disable" -h localhost -p 5432 -U postgres
 ```
 
