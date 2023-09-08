@@ -1,3 +1,4 @@
+Sick way to manage most languages/tools on a machine. Way faster and sleeker than OS package managers.
 
 Prerequisite to install RTX in [[Workstation]]
 
