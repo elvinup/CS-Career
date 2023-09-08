@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Accessing Containers in K8s.md",
+                "file": "Setup/Workstation.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Accessing Containers in K8s.md",
+                "file": "Setup/Workstation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Accessing Containers in K8s.md",
+                "file": "Setup/Workstation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Accessing Containers in K8s.md"
+                "file": "Setup/Workstation.md"
               }
             }
           }
@@ -150,10 +150,10 @@
   "lastOpenFiles": [
     "Setup/RTX.md",
     "Tips & Tricks/Kubernetes/Accessing Containers in K8s.md",
+    "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
     "README.md",
     "Tips & Tricks/Linux/Increase VM Disk Size.md",
     "Setup/Workstation.md",
-    "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
     "Tips & Tricks/Kubernetes/Ubuntu K8s Workstation.md",
     "Setup",
     "Tips & Tricks/Untitled.md",

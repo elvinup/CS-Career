@@ -2,6 +2,8 @@ After installing Podman Desktop in [[Ubuntu K8s Workstation]]:
 
 Follow [this guide](https://github.com/cloudnative-pg/cloudnative-pg/blob/2a104f9f46004413c4af58d2cf43d5233125eb6a/docs/src/quickstart.md) to install CNPG's PostgreSQL operator which makes this task way easier and more capable.
 
+Steps to re-setup
+
 ```bash
 # Not necessary but just to get used to separate this from everything else in k8s
 kubectl create namespace postgres
@@ -23,10 +25,10 @@ kubectl cnpg status postgres-cluster-example -n postgres
 # Grab postgres superuser password into clipboard
 kubectl -n postgres get secret postgres-cluster-example-superuser -o jsonpath='{.data.password}' | base64 --decode | pbcopy
 
-# Port forward to access the primary locally. From here we can use anything to connect to port 5432!
+# In 1 window: Port forward to access the primary locally. From here we can use anything to connect to port 5432!
 kubectl -n postgres port-forward postgres-cluster-example-1 5432:5432
 
-# Access postgresql via CLI! (In a separate tab) Disable SSL, less buggy
+# In 2nd window: Access postgresql via CLI! Disable SSL, less buggy
 psql "sslmode=disable" -h localhost -p 5432 -U postgres
 ```
 
