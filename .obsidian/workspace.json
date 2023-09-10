@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
+                "file": "Setup/Tmux.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "podman start",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
+                "file": "Setup/Tmux.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
+                "file": "Setup/Tmux.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md"
+                "file": "Setup/Tmux.md"
               }
             }
           }
@@ -148,13 +148,14 @@
   },
   "active": "a6186b260c4081b4",
   "lastOpenFiles": [
-    "Tips & Tricks/Kubernetes/Accessing Containers in K8s.md",
     "Setup/Workstation.md",
-    "Setup/RTX.md",
+    "Setup/Tmux.md",
     "Tips & Tricks/Kubernetes/Distributed PostgreSQL.md",
+    "Tips & Tricks/Kubernetes/Ubuntu K8s Workstation.md",
+    "Tips & Tricks/Kubernetes/Accessing Containers in K8s.md",
+    "Setup/RTX.md",
     "README.md",
     "Tips & Tricks/Linux/Increase VM Disk Size.md",
-    "Tips & Tricks/Kubernetes/Ubuntu K8s Workstation.md",
     "Setup",
     "Tips & Tricks/Untitled.md",
     "Tips & Tricks/Kubernetes",
