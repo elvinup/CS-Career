@@ -4,6 +4,10 @@ Follow [this guide](https://github.com/cloudnative-pg/cloudnative-pg/blob/2a104f
 
 Steps to re-setup (usually need to post system reboot)
 
+- Open Podman Desktop
+- Delete original KIND cluster, it's corrupted
+- Spin up a new one
+
 ```bash
 # Not necessary but just to get used to separate this from everything else in k8s
 kubectl create namespace postgres
@@ -26,12 +30,13 @@ kubectl cnpg status postgres-cluster-example -n postgres
 
 ## Access Locally
 ```bash
+# In 1 window: Port forward to access the primary locally. From here we can use anything to connect to port 5432!
+kubectl -n postgres port-forward postgres-cluster-example-1 5432:5432
+
 # REPEATING JUST THESE 3 STEPS will work until you reboot your system
 # Grab postgres superuser password into clipboard
 kubectl -n postgres get secret postgres-cluster-example-superuser -o jsonpath='{.data.password}' | base64 --decode | pbcopy
 
-# In 1 window: Port forward to access the primary locally. From here we can use anything to connect to port 5432!
-kubectl -n postgres port-forward postgres-cluster-example-1 5432:5432
 
 # In 2nd window: Access postgresql via CLI! Disable SSL, less buggy
 psql "sslmode=disable" -h localhost -p 5432 -U postgres
