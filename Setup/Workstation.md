@@ -1,3 +1,6 @@
+
+On a Mac? Configure your [[MacOS]] keyboard settings first!
+
 ## RTX
 
 Install `rtx` to install most tools
