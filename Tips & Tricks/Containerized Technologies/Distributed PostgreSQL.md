@@ -41,3 +41,22 @@ kubectl -n postgres get secret postgres-cluster-example-superuser -o jsonpath='{
 # In 2nd window: Access postgresql via CLI! Disable SSL, less buggy
 psql "sslmode=disable" -h localhost -p 5432 -U postgres
 ```
+
+## Common psql Commands
+
+- Create DB: `CREATE DATABASE test;`
+- Connect to DB: `\c test`
+- Create TABLE: 
+```
+CREATE TABLE index_demo (                                                 
+    name VARCHAR(20) NOT NULL,                                                   
+    age INT,                                                                     
+    pan_no VARCHAR(20),                                                          
+    phone_no VARCHAR(20)                                                         
+);
+```
+- Insert into Table:
+```
+INSERT INTO index_demo VALUES ('elvin', 26, 'IPOET0935V', '12199854739');
+```
+
