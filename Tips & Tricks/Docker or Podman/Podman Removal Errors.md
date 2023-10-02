@@ -16,4 +16,4 @@ podman system prune -fa && podman rmi -a
 ```
 rm -rf /tmp/run-$(id -u)/
 ```
-Will resolve the issue without rebooth
+Will resolve the issue without reboot
