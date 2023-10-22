@@ -4,17 +4,17 @@ This will spin up 3 scyllaDB containers, creating a 3 node cluster!
 
 ```bash
 # Need to run this as root, since rootless podman cant fetch the IPAddress for some reason
-podman run --name Node_X -d scylladb/scylla:5.2.0 --overprovisioned 1 --smp 1
+podman run --name scylla-node1 -d scylladb/scylla:5.2.0 
 
-podman run --name Node_Y -d scylladb/scylla:5.2.0 --seeds="$(podman inspect --format='{{ .NetworkSettings.IPAddress }}' Node_X)" --overprovisioned 1 --smp 1
+podman run --name scylla-node2 -d scylladb/scylla:5.2.0 --seeds="$(podman inspect --format='{{ .NetworkSettings.IPAddress }}' scylla-node1)"
 
-podman run --name Node_Z -d scylladb/scylla:5.2.0 --seeds="$(podman inspect --format='{{ .NetworkSettings.IPAddress }}' Node_X)" --overprovisioned 1 --smp 1
+podman run --name scylla-node3 -d scylladb/scylla:5.2.0 --seeds="$(podman inspect --format='{{ .NetworkSettings.IPAddress }}' scylla-node1)"
 ```
 
 Can use this command to verify finished (UN status on all 3 nodes)
 
 ```bash
-podman exec -it Node_Z nodetool status  
+podman exec -it scylla-node3 nodetool status  
 ```
 
 ## CQL Shell
@@ -22,7 +22,7 @@ podman exec -it Node_Z nodetool status
 To start interacting directly with the cluster
 
 ```bash
-podman exec -it Node_Z cqlsh 
+podman exec -it scylla-node3 cqlsh 
 ```
 
 More basic instructions [here](https://university.scylladb.com/courses/scylla-essentials-overview/lessons/high-availability/topic/consistency-level-demo-part-1/)
@@ -30,6 +30,16 @@ More basic instructions [here](https://university.scylladb.com/courses/scylla-es
 ## Replication Factor (FL)
 
 Generally, can set replication factor with a concept called a `Keyspace`, which is metadata for multiple tables to follow.
+
+General rule is use 1 keyspace per application, so usually 1 per cluster.
+
+Creating, using, and listing the keyspace:
+
+```cql
+CREATE KEYSPACE mykeyspace WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'replication_factor' : 3};
+use mykeyspace; use
+DESCRIBE KEYSPACE mykeyspace;
+```
 
 ## Consistency Level (CL)
 
@@ -49,3 +59,24 @@ And then just stop one of the containers to see a typical INSERT operation fail 
 We would get this error:
 ![[Pasted image 20231022155908.png]]
 
+## Shards
+
+To view cores and shards on a node:
+
+Login
+```bash
+podman exec -it scylla-node3 bash
+```
+
+And run this script that comes with scyllaDB's installation (or container)
+```cql
+./usr/lib/scylla/seastar-cpu-map.sh -n scylla
+```
+
+### Rack Grouping
+
+ScyllaDB's `Snitch` determines how data is partitioned into availability zones like with Kafka or Elasticsearch.
+
+[Snitch options](https://university.scylladb.com/courses/scylla-essentials-overview/lessons/architecture/topic/snitch/) say `GossipingPropertyFileSnitch` is the best one since you define which node is in which rack explicitly
+
+Rack info configurable in `/etc/scylla/cassandra-rackdc.properties`
