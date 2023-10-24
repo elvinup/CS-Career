@@ -80,3 +80,17 @@ ScyllaDB's `Snitch` determines how data is partitioned into availability zones l
 [Snitch options](https://university.scylladb.com/courses/scylla-essentials-overview/lessons/architecture/topic/snitch/) say `GossipingPropertyFileSnitch` is the best one since you define which node is in which rack explicitly
 
 Rack info configurable in `/etc/scylla/cassandra-rackdc.properties`
+
+### Multi Datacenter
+
+In a scyllaDB config: `DC1:3,DC2:3` means we store three copies of the data in each datacenter
+
+#### Force Sync Between DC's
+
+Say we have nodes 1-3 in DC1, and nodes 4-5 in DC2.
+
+In this example, we'd run this on all 3 DC2 nodes to ensure they sync with DC1's data if we made some updates recently to it.
+
+```cql
+nodetool rebuild -- DC1
+```
