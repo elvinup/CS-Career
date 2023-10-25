@@ -94,3 +94,13 @@ In this example, we'd run this on all 3 DC2 nodes to ensure they sync with DC1's
 ```cql
 nodetool rebuild -- DC1
 ```
+
+### Materialized View
+
+To make an abstraction on denormalized data so they auto update from one write, can make a materialized view of that data.
+
+```cql
+CREATE MATERIALIZED VIEW get_locations AS SELECT location FROM tracking.tracking_data WHERE location IS NOT NULL AND first_name IS NOT NULL AND last_name IS NOT NULL AND timestamp IS NOT NULL PRIMARY KEY((location), first_name, last_name, timestamp);_
+```
+
+Can create intensive applications that can store and sort through data faster and more efficiently with less coding because those tasks can be handled by the ScyllaDB cluster rather than in the applications themselves using the view
