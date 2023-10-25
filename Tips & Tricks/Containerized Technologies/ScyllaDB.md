@@ -119,3 +119,50 @@ If ever using [[Spark]] with ScyllaDB, follow these config tips
 
 - Allocate 1 Spark CPU core for every 2 ScyllaDB cores;
 - Allocate 2GB of RAM for every Spark CPU core.
+
+#### Lab
+
+In this [scylla lab](https://university.scylladb.com/courses/the-mutant-monitoring-system-training-course/lessons/using-spark-with-scylla/topic/scylla-and-spark-lab/) make these changes
+
+```
+export $HOSTNAME=127.0.1.1
+```
+
+after running ./start-spark.sh
+
+Can view spark UI at `127.0.1.1:8080
+
+All the lab really does is convert this table in a ScyllaDB instance
+
+```cql
+ uid | lettersinname | lname   | name
+-----+---------------+---------+-------
+   1 |          null | sanchez |  rick
+   4 |          null |   cohle |  rust
+   7 |          null |     joo |   joe
+ 502 |             6 |     bar |   foo
+ 102 |          null |     bar | byran
+
+```
+
+to
+
+```cql
+ uid | lettersinname | lname   | name
+-----+---------------+---------+-------
+   1 |            11 | sanchez |  rick
+   4 |             9 |   cohle |  rust
+   7 |             6 |     joo |   joe
+ 502 |             6 |     bar |   foo
+ 102 |             8 |     bar | byran
+```
+
+So we used [[Spark]] to populate those null values in a scyllaDB table to the "enriched" values they should be. 
+
+Logic is contained in this [Scala script](https://github.com/scylladb/scylla-code-samples/blob/master/spark3-scylla4-demo/src/main/scala/LetterInNameCountEnrich.scala)
+
+Shows a proof of concept of Spark working directly with ScyllaDB using Scala.
+
+Doesn't seem like much, but at scale that is where spark can use parallelism with a large data set to do this more efficiently than ScyllaDB could by itself. 
+
+Note: Stick to Java 11 instead of the latest to work with scala, or the sbt command will annoy you.
