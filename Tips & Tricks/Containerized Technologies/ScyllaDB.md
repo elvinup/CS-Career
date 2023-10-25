@@ -104,3 +104,18 @@ CREATE MATERIALIZED VIEW get_locations AS SELECT location FROM tracking.tracking
 ```
 
 Can create intensive applications that can store and sort through data faster and more efficiently with less coding because those tasks can be handled by the ScyllaDB cluster rather than in the applications themselves using the view
+
+## Integrations
+
+### Spark
+
+ScyllaDB can read data -> Spark
+
+When reading data from ScyllaDB into Spark, data is split, and each Executor reads a chunk.
+
+It batches information to it
+
+If ever using [[Spark]] with ScyllaDB, follow these config tips
+
+- Allocate 1 Spark CPU core for every 2 ScyllaDB cores;
+- Allocate 2GB of RAM for every Spark CPU core.
