@@ -166,3 +166,4 @@ Shows a proof of concept of Spark working directly with ScyllaDB using Scala.
 Doesn't seem like much, but at scale that is where spark can use parallelism with a large data set to do this more efficiently than ScyllaDB could by itself. 
 
 Note: Stick to Java 11 instead of the latest to work with scala, or the sbt command will annoy you.
+
