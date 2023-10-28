@@ -27,6 +27,21 @@ podman exec -it scylla-node3 cqlsh
 
 More basic instructions [here](https://university.scylladb.com/courses/scylla-essentials-overview/lessons/high-availability/topic/consistency-level-demo-part-1/)
 
+## Basic Usage
+
+List keyspaces:
+```cql
+desc keyspaces;
+
+use <keyspace>;
+```
+
+List tables in keyspace:
+```cql
+desc tables;
+```
+
+
 ## Replication Factor (FL)
 
 Generally, can set replication factor with a concept called a `Keyspace`, which is metadata for multiple tables to follow.
