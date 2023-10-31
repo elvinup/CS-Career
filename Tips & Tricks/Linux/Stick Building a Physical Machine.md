@@ -79,7 +79,7 @@ Copy from another existing physical machine all the `ifcfg-*` files
 Specifically update the files
 
 ```
-ifcfg-bond0
+ifcfg-bond0 # Create this if it doesn't exist already
 ifcfg-eno5
 ifcfg-eno6
 ```
@@ -98,6 +98,7 @@ vi /etc/resolv.conf
 
 Copy from DNS hosts from any server in the same stack
 
+Example from q33
 ```
 domain qa.local
 search qa.local
