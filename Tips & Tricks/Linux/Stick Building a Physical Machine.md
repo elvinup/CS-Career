@@ -1,3 +1,5 @@
+
+This example will be about the MEOW server
 ## Check name
 
 If name needs to be renamed:
@@ -14,7 +16,7 @@ Use `atl1q33mkadm01.qa.local` to be able to access iLO's in Q33 or DFW environme
 
 ## Grab ISO
 
-Grab a Centos 7 ISO or RHEL9 ISO, download it locally from the Q33 MEOW
+Grab a Centos 7 ISO or RHEL9 ISO, download it from your friendly neighborhood MEOW server:
 
 ```
 http://atl1q33meow01.qa.local/centos/7/CentOS-7-x86_64-DVD-2009.iso
@@ -32,13 +34,13 @@ Eventually we'll get to this page
 
 Just set Installation Destination to the 500GB SSD
 
-Can set to automatic partitioning, but we will end up with this from an `lsblk`
+You can set to automatic partitioning, but better if you specify it to omit centos-home, otherwise we will end up with this from an `lsblk`
 
 - centos-home 492.1G
 - centos-root 50G
 - centos-swap 4G
 
-To fix this
+If you ignored this advice and clicked automatic anyways, it's okay, to fix this
 
 ```shell
 umount -fl /home
@@ -50,18 +52,75 @@ xfs_growfs /dev/mapper/centos-root
 
 ## Set DNS
 
-Create a CSV like:
+Create a CSV, maybe infoblox.cvs with this format
 
+```csv
+HEADER-Arecord,Address,FQDN,create_ptr
+Arecord, 10.232.193.3, dfw1q02meow01.qa.local, TRUE
+```
+
+Transfer over sftp to easily get it to Centro
+
+Then do a CSV import selecting this file to import to infoblox and have it mapped to that DNS
+
+## Update hostname
+
+```bash
+hostnamectl set-hostname dfw1q02meow01.qa.local
+```
 ## Update Networking
 
-```
+```bash
 cd /etc/sysconfig/network-scripts
 ```
 
 Copy from another existing physical machine all the `ifcfg-*` files
 
-## Update hostname?
+Specifically update the files
 
+```
+ifcfg-bond0
+ifcfg-eno5
+ifcfg-eno6
+```
+
+```bash
+systemctl restart network
+```
+
+Now we should be able to ssh into this host!
+
+## Setup DNS
+
+```bash
+vi /etc/resolv.conf
+```
+
+Copy from DNS hosts from any server in the same stack
+
+```
+domain qa.local
+search qa.local
+
+nameserver 10.209.28.1
+nameserver 10.209.28.2
+
+options timeout:2
+```
+
+Need this so we can resolve hostnames like the kcap servers we want to get the cinc rpm from!
 ## Install Cinc
 
+Try to bootstrap the host with the knife bootstrap command to install cinc
+
+With cinc, this requires getting the RPM from the nearest
+
+```bash
+knife bootstrap dfw1q02meow01.qa.local -N dfw1q02meow01.qa.local -U root -P linux123 -E dfw1q02 --bootstrap-install-command "curl -O dfw1q02kcap01.qa.local/pulp/repos/SFMC/QA/centos-7/custom/chef-el7/chef-el7/Packages/c/cinc-16.18.30-1.el7.x86_64.rpm && sudo yum install -y cinc-16.18.30-1.el7.x86_64.rpm" -r 'recipe[sfmc_os_base]'
+```
+
 ## Configure Host
+
+```
+sudo chef-client -o recipe[sfmc_meow]
+```
