@@ -52,7 +52,15 @@ xfs_growfs /dev/mapper/centos-root
 
 Create a CSV like:
 
-## Update hostname
+## Update Networking
+
+```
+cd /etc/sysconfig/network-scripts
+```
+
+Copy from another existing physical machine all the `ifcfg-*` files
+
+## Update hostname?
 
 ## Install Cinc
 
