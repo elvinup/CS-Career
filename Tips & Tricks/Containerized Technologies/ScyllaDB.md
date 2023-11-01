@@ -120,6 +120,79 @@ CREATE MATERIALIZED VIEW get_locations AS SELECT location FROM tracking.tracking
 
 Can create intensive applications that can store and sort through data faster and more efficiently with less coding because those tasks can be handled by the ScyllaDB cluster rather than in the applications themselves using the view
 
+#### Global Index
+
+How it works
+
+Imagine we have this table
+
+```cql
+ city        | name            | dish_type               | price
+-------------+-----------------+-------------------------+-------
+   Reykjavik |          hakarl |  cold Icelandic starter |    16
+   Reykjavik |            svid | hot Icelandic main dish |    21
+      Da Lat |         banh mi |    Vietnamese breakfast |     5
+ Ho Chi Minh |         bun mam |         Vietnamese soup |     8
+ Ho Chi Minh |        goi cuon |  Vietnamese hot starter |     6
+      Cracow | beef tripe soup |             Polish soup |     6
+      Warsaw |      pork jelly |     cold Polish starter |     8
+      Warsaw |     sorrel soup |             Polish soup |     5
+      Warsaw |   sour rye soup |             Polish soup |     7
+```
+
+Primary key is set on city and name, so we can't just search based on dish_type.
+
+We have to create an index like:
+```cql
+CREATE INDEX ON menus(dish_type);
+```
+
+Which then allows us to do 
+```cql
+SELECT * from menus where dish_type = 'Polish soup';
+```
+
+![[Pasted image 20231031203351.png]]
+
+This is what's happening internally. There's 2 hops from different nodes, deriving the primary key of "Polish soup" results, and then querying the original base table with that subset of primary keys to give the illusion it's directly giving you what you want.
+
+Note: avoid creating an index on a low cardinality (low uniqueness) column, or the index won't be as helpful and adding storage for little ROI
+#### Local Index
+
+What about getting dishes for 1 specific city?
+
+```cql
+SELECT * FROM menus WHERE city = 'Warsaw' and dish_type = 'Polish soup';
+```
+
+We could achieve this with a local index like so
+```cql
+CREATE INDEX ON menus((city),dish_type);
+```
+
+Global index would still work, but introduce more nodes in communication which is more latency.
+
+Using a local index is even faster since we're working with the same node, and shard aware libraries can allow just 1 round trip instead of 2.
+
+Note: Local index is only applicable when we're using the **primary key** in our query, because then we have to read from more than 1 node since this is now involving multiple partitions. We can only specify 1 node and use a local index if we narrow it down to 1 partition 
+
+![[Pasted image 20231031203748.png]]
+#### Materialized View vs Global Index vs Local Index
+
+A rule of thumb:
+1. For no storage overhead, filtering is the only option
+2. For highly selective queries, indexing may be more beneficial than filtering
+3. If most of the queries specify a single partition key:
+* a local index is faster than a global index, especially with token aware load balancing policy
+* filtering a single partition may be faster than an index, depending on the partition size
+4. If most of the queries are multi-partition, local indexes won’t help:
+* a global index may be beneficial, especially if query selectivity is expected to be high
+* filtering may be better if the query selectivity is low (i.e. the result consists of most of the rows)
+![[Pasted image 20231031194755.png]]
+
+Materialized view is faster than secondary indexes for reads because it doesn't need 2 hops like Secondary Indexes might. 
+
+Also can't use secondary indexes if you have low cardinality (low number of options/unique values), in which case stick to a basic materialized view too. Just denormalize in this case.
 ## Integrations
 
 ### Spark
