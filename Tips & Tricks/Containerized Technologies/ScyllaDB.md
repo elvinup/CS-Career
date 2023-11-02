@@ -255,3 +255,36 @@ Doesn't seem like much, but at scale that is where spark can use parallelism wit
 
 Note: Stick to Java 11 instead of the latest to work with scala, or the sbt command will annoy you.
 
+## Drivers
+
+Always use **prepared statements**, which are basically an easier way for scyllaDB and Cassandra to cache part of your query so it knows which node to fetch your data more precisely usually based on a MD5 hash of your query parameters.
+
+Generally always recommended to make queries much more efficient
+
+In other words instead of using this
+
+```python
+self.session.execute(f"INSERT INTO mutant_data (first_name, last_name, address, picture_location) VALUES ('{first_name}','{last_name}','{address}','{picture_location}')")
+```
+
+use this prepared statement
+
+```python
+
+self.insert_ps = self.session.prepare(
+   query="INSERT INTO mutant_data (first_name,last_name,address,picture_location) VALUES (?,?,?,?)"
+)
+
+def add_mutant(self, first_name, last_name, address, picture_location):
+   print(f"\nAdding {first_name} {last_name}...")
+   self.session.execute(query=self.insert_ps, parameters=[first_name, last_name, address, picture_location])
+   print("Added.\n")
+```
+
+It is also better to **page** results as [described here](https://university.scylladb.com/courses/using-scylla-drivers/lessons/rust-and-scylla-prepared-statements-paging-and-retries/), basically lets us stream results rather than loading everything from memory at once.
+
+## Production
+
+It's recommended [NOT to use containers to deploy scyllaDB in Prod](https://www.scylladb.com/2018/08/09/cost-containerization-scylla/)
+
+The extra layer of abstraction can give a 3% performance penalty for the operational convenience
