@@ -287,4 +287,12 @@ It is also better to **page** results as [described here](https://university.scy
 
 It's recommended [NOT to use containers to deploy scyllaDB in Prod](https://www.scylladb.com/2018/08/09/cost-containerization-scylla/)
 
+
 The extra layer of abstraction can give a 3% performance penalty for the operational convenience
+
+This is negligible if you can afford a decent buffer for that overhead, but it's much worse if you don't set these options when running your container
+
+- `--cpuset` ~ 30% boost
+- `--network host` ~ 10% boost
+
+Doing this should give roughly 97%, performance, otherwise can go down to 60%!
