@@ -8,6 +8,13 @@ This means we [Stick build](https://confluence.internal.salesforce.com/display/S
 
 TBD, but generally we can just build MEOW as a **virtual machine** if VMware clusters exist in the stack already.
 
+## Pre-Work
+
+The MEOW lives in VLAN 193, while ESXi hosts live in VLAN 40.
+
+ESXi is a special case where they need to get their IP statically from the DHCP server, so we need to request NIE-TAC to add a DHCP helper to allow DHCP traffic between VLANs.
+
+DHCP Helper request - NetEng - : [Example](https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07EE00001dXwuQYAS/view)
 ## Configuration
 
 Create a new <stack.yaml> file in the attributes folder of the sfmc_meow cookbook and upload it to chef.
