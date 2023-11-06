@@ -6,6 +6,12 @@ Steps to re-setup (usually need to post system reboot)
 
 - Open Podman Desktop
 - Delete original KIND cluster, it's corrupted
+
+If above is buggy just run 
+
+```bash
+KIND_EXPERIMENTAL_PROVIDER=podman kind create cluster
+```
 - Spin up a new one
 
 ```bash
