@@ -43,3 +43,71 @@ UPDATE "9915" WITH { age: 40 } IN users
 ```
 REMOVE "9883" IN users
 ```
+
+
+## Graph Queries
+
+For the example of Flights and Airports
+
+Vertices: Airports
+Edges: Flights between Airports
+
+All Airports 1 airport stop away from LAX
+```cypher
+FOR airport IN 1..1 
+  OUTBOUND
+  'airports/LAX' flights
+  RETURN DISTINCT airport.name
+```
+
+Return just 10 airplane flight numbers coming to BIS
+
+```cypher
+FOR airport, flight IN 
+INBOUND
+'airports/BIS' flights
+  LIMIT 10
+  RETURN flight.FlightNum
+```
+
+Find all connections which **depart from or land at** BIS on January 5th and 7th and return to the destination city and the arrival time in universal time (UTC)
+
+```cypher
+FOR airport, flight IN ANY 
+'airports/BIS' flights
+  FILTER flight.Month == 1
+     AND flight.Day >= 5
+     AND flight.Day <= 7
+  RETURN { city: airport.city,
+           time: flight.ArrTimeUTC }
+```
+
+Graph Query Syntax
+
+```
+FOR vertex[, edge[, path]]
+  IN [min[..max]]
+  OUTBOUND|INBOUND|ANY startVertex
+  edgeCollection[, more…]
+```
+
+
+Default is DFS, can choose BFS instead like so
+
+```cypher
+FOR v IN 1..10 OUTBOUND 'verts/S' edges
+    OPTIONS {bfs: true}
+    FILTER v._key == 'F'
+    LIMIT 1
+    RETURN v
+```
+
+Shortest path from Bismark to JFK
+
+```cypher
+WITH airports
+FOR v IN OUTBOUND
+  SHORTEST_PATH 'airports/BIS'
+  TO 'airports/JFK' flights
+  RETURN v.name
+```
