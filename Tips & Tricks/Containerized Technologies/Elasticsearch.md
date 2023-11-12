@@ -85,6 +85,10 @@ services:
 
 ```
 
+
+```bash
+podman-compose up -d
+```
 ### Logstash
 
 Now the component that connects Kafka -> Elasticsearch
@@ -164,6 +168,7 @@ Then just follow the prompt to create an index pattern on "registered_user*"
 
 After that, we can play with the search bar UI in the big blue **Discover Index** button on top right.
 
+## End Result
 
 ![[Pasted image 20231112175023.png]]
 
