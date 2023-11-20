@@ -1,6 +1,6 @@
 
 How to setup a one node Elasticsearch and Kibana
-## Elasticsearch and Kibana
+## Install with Kibana
 	
 docker-compose.yml of 
 
