@@ -203,3 +203,36 @@ INSERT INTO pageviews_kafka SELECT * FROM pageviews;
 
 Finally, you'll see data flowing to that pageviews topic constantly directly from Flink in http://localhost:28080!
 
+## Serializing and Deserializing Data
+
+![[Pasted image 20231130225215.png]]
+
+Data is serialized 
+- Externally from Kafka to Flink
+- Externally from Flink Operator to operator
+- Internally from Flink operator to user function
+
+And deserialized in the reverse, so data is passed around a lot.
+
+For serialization to be efficient, Java Classes are more efficient at serializing if made with these criteria:
+
+- public class
+- default contstructor
+- All fields public
+
+These are also called POJOs (Plain Old Java Objects)
+
+Efficient
+```java
+public class Person {
+	public String name;
+	private String email;
+	
+	public Person () {}
+	
+	public String getEmail() {return email;}
+	public void setEmail(String email) {this.email = email;}
+}
+```
+
+If they don't meet the criteria, serializing performance can go down as low as **75% worse**!
