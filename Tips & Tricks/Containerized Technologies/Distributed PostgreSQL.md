@@ -66,3 +66,4 @@ CREATE TABLE index_demo (
 INSERT INTO index_demo VALUES ('elvin', 26, 'IPOET0935V', '12199854739');
 ```
 
+Overall for more PostgreSQL commands and tips: [Prisma](https://www.prisma.io/dataguide/postgresql/inserting-and-modifying-data) has a pretty thorough and concise guide for it
