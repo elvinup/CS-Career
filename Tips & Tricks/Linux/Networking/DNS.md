@@ -18,4 +18,6 @@ PRO TIP: Check an adjacent server in the same subnet and do an `ip route` to che
 
 ## Using Netcat
 
+```
 nc -v 10.209.51.254 port 53
+```
