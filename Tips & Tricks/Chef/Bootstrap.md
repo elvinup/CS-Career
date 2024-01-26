@@ -1,4 +1,4 @@
-
+If you need to bootstrap a node manually
 ## New Node
 To boot strap a new node follow these commands
 
@@ -26,5 +26,17 @@ vi /etc/cinc/validation.pem
 Same with the trusted_cert
 
 ```
-vi /etc/cinc/t
+vi /etc/cinc/trusted_certs/chef_[qa|xt]_local.crt
 ```
+
+```
+cinc-client -E {{ chef_env }} -o recipe[rhel9_sfmc_repos]
+cinc-client -E {{ chef_env }} -o recipe[databag]
+cinc-client -r recipe[rhel9_sfmc_os_base]
+```
+
+## Existing Node
+
+For bootstrapping a node that used to be in the inventory.
+
+Delete  `/etc/cinc/client.pem`, it will look at that instead of `validation.pem` if it exists
