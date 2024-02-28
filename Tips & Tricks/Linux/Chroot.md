@@ -31,3 +31,6 @@ mount # check if last value is /bin/sdb2, or match whatever's there
 mount -o /bin/sdb2, rw /
 passwd root # Change root password, or delete /etc/passwd- if it exists
 ```
+
+exit
+reboot
