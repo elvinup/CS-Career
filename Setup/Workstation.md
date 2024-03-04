@@ -5,6 +5,9 @@ On a Mac? Configure your [[MacOS]] keyboard settings first!
 
 Install this terminal emulator first
 
+## Zsh
+
+Install [[Zsh]]
 ## Mise
 
 Install [[Mise]] to install most other tools
@@ -17,9 +20,7 @@ Install and setup .vimrc with [[Vim]]
 #### [Stoken Container](https://github.com/jriddle-sf/stoken-in-docker)
 
 Useful for grabbing the centro token
-## Zsh
 
-Install [[Zsh]]
 ## Raycast
 
 For automating actions on a macbook. Follow [[Raycast]]
