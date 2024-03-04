@@ -10,6 +10,10 @@ Install [[Zsh]]
 ## Vim
 
 Install and setup .vimrc with [[Vim]]
+
+## Tmux
+
+[[Tmux]] config for multiple windows in terminal
 ## Mise
 
 Install [[Mise]] to install most other tools
