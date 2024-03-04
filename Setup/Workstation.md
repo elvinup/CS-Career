@@ -5,12 +5,13 @@ On a Mac? Configure your [[MacOS]] keyboard settings first!
 
 Install this terminal emulator first
 
-## Vim
-
-Install and setup .vimrc with [[Vim]]
 ## Mise
 
 Install [[Mise]] to install most other tools
+
+## Vim
+
+Install and setup .vimrc with [[Vim]]
 ## Docker
 
 #### [Stoken Container](https://github.com/jriddle-sf/stoken-in-docker)
