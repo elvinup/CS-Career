@@ -4,17 +4,15 @@ On a Mac? Configure your [[MacOS]] keyboard settings first!
 ## Iterm2
 
 Install this terminal emulator first
-
 ## Zsh
 
 Install [[Zsh]]
-## Mise
-
-Install [[Mise]] to install most other tools
-
 ## Vim
 
 Install and setup .vimrc with [[Vim]]
+## Mise
+
+Install [[Mise]] to install most other tools
 ## Docker
 
 #### [Stoken Container](https://github.com/jriddle-sf/stoken-in-docker)
