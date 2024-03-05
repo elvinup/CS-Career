@@ -1,5 +1,11 @@
 Tmux allows you to have multiple windows in the same terminal window for max productivity
 
+
+## Install
+
+```
+brew install tmux
+```
 ## Copy Paste
 ### Ubuntu 
 
