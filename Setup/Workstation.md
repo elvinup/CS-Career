@@ -31,14 +31,28 @@ For automating actions on a macbook. Follow [[Raycast]]
 
 Follow [[Maven]] installation instructions
 
-### Trick out Terminal with Zsh and Custom Themes
+## SSH
 
-https://medium.com/@satriajanaka09/setup-zsh-oh-my-zsh-powerlevel10k-on-ubuntu-20-04-c4a4052508fd
+- Setup SSH Config with ~/.ssh
+	- Git SOMA (id_rsa)
+	- Regular Github_sfemu (id_ed22519_work)
 
-Make sure to set 
+## GPG key setup if required
 
 ```
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+brew install gnupg
+
+gpg --gen-key # no pw required
+gpg --list-secret-keys --keyid-format=long 
+
+# sec ed25519/<key> 202403-05
+gpg --armor --export <key> | pbcopy # Paste this into Github GPG Key
 ```
 
-To make autosuggestions more visible if they're hard to see
+GPG Git Signing
+
+```
+git config user.signingkey <key>
+git config --global commit.gpgsign true
+```
+
