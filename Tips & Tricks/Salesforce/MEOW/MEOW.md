@@ -14,7 +14,7 @@ This does the "PXE Magic" and suddenly your server boots into the OS you want
 | Configure MEOW Host     | [MEOW VM Build Procedure](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW+VM+Build+Procedure) |
 | Access the API          | [API](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW#api)                                    |
 | Find MEOW endpoints     | [Layout](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW#layout)                              |
-| Basic Usage             |                                                                                                                 |
+| Basic Usage             | [Using MEOW](https://confluence.internal.salesforce.com/display/SFMCLINUX/Using+MEOW)                           |
 | Basic TroubleShooting   | [Chef Cookbook](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW#chef-cookbook)                |
 | Deal with Podman        | [Podman](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW#podman)                              |
 | Restart Service         | [Service](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW#service)                            |
@@ -75,9 +75,6 @@ MEOW is essentially hosting a DHCP server, and we cannot have multiple DHCP/MEOW
 |     |         | ind1s06 | ind1s06meow01.xt.local |
 | IAD |         | iad4s13 | iad4s13meow01.xt.local |
 |     |         | iad4s12 | iad4s12meow01.xt.local |
-## Basic Usage
-
-
 ## Troubleshooting
 
 ### Chef Cookbook
