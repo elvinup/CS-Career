@@ -29,25 +29,32 @@ sudo chef-client -o recipe[sfmc_meow]
 
 ### Manual Steps
 
-There are only a couple leftover steps that are TBD how to automate yet. They just involve downloading large image files for Linux and Windows, and preparing them for MEOW's servers use.
+TBD, find a better way to automate sourcing these files for the MEOW configuration
 
-- Download CentOS iso from somewhere and extract 
-	- Can be an existing meow server or anywhere else that has it
-
-```bash
-cd /var/www/html/centos/7
-curl -O http://atl1q33meow01.qa.local/centos/7/CentOS-7-x86_64-DVD-2009.iso
-
-7z x -y /var/www/html/centos/7/CentOS-7-x86_64-DVD-2009.iso -o/var/www/html/centos/7/sources/`
-```
-
-- Download boot.wim from somewhere
+#### Windows
+- Download or SCP these files from an existing MEOW server on a different stack
+	- BCD
+	- boot.sdi
+	- boot.wim
+	- wimboot
 
 ```bash
 cd /var/www/html/windows
+curl -O http://atl1q33meow01.qa.local/windows/BCD
+curl -O http://atl1q33meow01.qa.local/windows/boot.sdi
 curl -O http://atl1q33meow01.qa.local/windows/boot.wim
+curl -O http://atl1q33meow01.qa.local/windows/wimboot
 ```
 
+#### ESXi
+
+**Skip this if this is a brand new stack, won't be an existing auto server to inherit host files from** 
+
+`*auto*.xt.local` servers were the old DHCP server for ESXi machines.
+
+Go to the corresponding stack's `auto` server to extract the hosts out of `/opt/dhcp/dhcpd-reservations.conf`
+
+Have a file created for each host in the meow server's `/var/www/html/hosts/esxi` folder.
 ## Verify
 
 If you see a cat staring at you when you do a 
@@ -57,3 +64,5 @@ curl localhost:3001
 ```
 
 Then that means the API is up!
+
+Add new meow stack url to the [MEOW documentation table](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW/#layout)
