@@ -21,6 +21,7 @@ This does the "PXE Magic" and suddenly your server boots into the OS you want
 | Monitor DHCP Traffic    | [DHCP](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW#dhcp)                                  |
 | Fix Windows PXE Booting | [Windows](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW#windows)                            |
 | Fix ESXi PXE Booting    | [ESXi](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW#esxi)                                  |
+| Password Rotation       | [MEOW Password Rotation](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW+Password+Rotation)   |
 
 ## Configuration
 
