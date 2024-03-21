@@ -33,6 +33,14 @@ sudo dnf install podman podman-docker podman-plugins dnsmasq
 
 It's in a weird state because of the OS level systemd meow@1277 above is messed up and needs to be restarted. TODO how to keep this working persistently. Seems to get triggered by reboots.
 
+
+```
+systemctl stop meow@1277
+systemctl start meow@1277
+```
+
+or try this:
+
 ```bash
 # switch to meow user
 # turn off --user meow-api service
@@ -41,12 +49,5 @@ systemctl --user stop meow-api
 # go back to root
 # restart meow@1277, this seems to fix this weird state 
 exit
-systemctl restart meow@1277
-```
-
-or try this
-
-```
-systemctl daemon-reload
 systemctl restart meow@1277
 ```
