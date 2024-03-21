@@ -43,3 +43,10 @@ systemctl --user stop meow-api
 exit
 systemctl restart meow@1277
 ```
+
+or try this
+
+```
+systemctl daemon-reload
+systemctl restart meow@1277
+```
