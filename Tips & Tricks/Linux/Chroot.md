@@ -27,9 +27,13 @@ reboot #reboot normally and enter new root pw
 - Press `CTRL-X` to save
 
 ```
-mount # check if last value is /dev/sda2, or match whatever is listed there. 
+# check if last value is /dev/sda2, or match whatever is listed there. 
 # It will change per VM
-mount -o remount,rw /dev/sda2 / # mount parititon to root, allows writing
+mount
+
+# mount parititon to root, allows writing
+mount -o remount,rw /dev/sda2 / 
+
 passwd root # Change root password, or delete /etc/passwd- if it exists
 ```
 
