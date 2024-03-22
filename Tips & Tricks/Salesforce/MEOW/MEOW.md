@@ -1,7 +1,5 @@
 Marvelously-Easy-OS-Worker
 
-[Design Doc](https://salesforce.quip.com/No9WAapQw5FD)
-
 The MEOW is a PXE server to help deploy physical servers for Linux, Windows, and ESXi in Marketing Cloud
 
 Servers that need to be PXE booted will be assumed to be in a boot loop attempting to boot off the network, until an API call to the MEOW is made for that respective server.
@@ -9,6 +7,7 @@ Servers that need to be PXE booted will be assumed to be in a boot loop attempti
 This does the "PXE Magic" and suddenly your server boots into the OS you want
 
 # Table of Contents 
+
 | How do I                | Knowledge Link                                                                                                  |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------- |
 | Configure MEOW Host     | [MEOW VM Build Procedure](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW+VM+Build+Procedure) |
@@ -76,6 +75,17 @@ MEOW is essentially hosting a DHCP server, and we cannot have multiple DHCP/MEOW
 |     |         | ind1s06 | ind1s06meow01.xt.local |
 | IAD |         | iad4s13 | iad4s13meow01.xt.local |
 |     |         | iad4s12 | iad4s12meow01.xt.local |
+## Networking
+
+MEOW lives in VLAN 193 on each stack.
+
+This means servers that want to be PXE boot using the MEOW server need to be on **native VLAN 193** in order to communicate over DHCP with it properly.
+
+Ports needed for proper communication between MEOW <-> target machine:
+- DHCP: 67, 68
+- TFTP: 69
+- HTTP: 80, 3001
+- HTTPS: 443, 3002
 ## Troubleshooting
 
 ### Chef Cookbook
@@ -174,3 +184,6 @@ Chef Cookbook [repo](https://github.com/sfdc-mc-mj/LINUX.sfmc_meow/) for configu
 ## Extra Links
 
 - [Configuring MEOW VM demo](https://drive.google.com/file/d/1jA8SYzvLG_3mWYY-nB4bMBbxsTNUWtGn/view?usp=drive_link)
+- [Design Doc](https://salesforce.quip.com/No9WAapQw5FD)
+- SA: [SA-031918](https://gus.lightning.force.com/lightning/r/ADM_Security_Assessment__c/a7YEE0000006bPt2AI/view)
+- MEOW netsec requests required to work: [S50 example](https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07EE00001gLTHIYA4/view) (Go to Related Tab -> Child Work Tree)

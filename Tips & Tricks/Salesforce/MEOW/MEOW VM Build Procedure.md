@@ -1,6 +1,6 @@
 ## New Stacks
 
-If this is a brand new stack, and VCenter isn't available yet, then make sure you follow [[MEOW Physical Build Procedure]] instead of this page.
+If this is a brand new stack, and VCenter isn't available yet, then make sure you follow [MEOW Physical Build Procedure](https://confluence.internal.salesforce.com/display/SFMCLINUX/MEOW+Physical+Build+Procedure) instead of this page.
 ## Existing Stacks
 
 If VCenter exists, MEOW can be built as a VM in **VLAN 193** (Build VLAN)
@@ -80,3 +80,17 @@ curl localhost:3001
 ```
 
 Then that means the API is up!
+## Notify Customers
+
+Need to notify
+
+- `#mc-vips-public`
+- `#winux`
+
+The MEOW lives in VLAN 193, while all ESXi hosts and some Windows hosts live in other VLANs.
+
+ESXi is a special case where they need to get their IP statically from the DHCP server. 
+
+Delegate this work to these teams and notify them that they need to request NetEng to add a DHCP helper for their subnet containing their machines to allow DHCP traffic between VLANs.
+
+DHCP Helper request - NetEng - : [Example](https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07EE00001dXwuQYAS/view)
