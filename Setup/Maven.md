@@ -3,8 +3,17 @@ Maven in SF uses **Nexus Repository Manager** to source dependencies when buildi
 Note: If moving from SF, can delete this page, or move to the /Salesforce folder.
 ## Nexus Credentials
 
-Generate nexus credentials to download repos for maven [here](https://confluence.internal.salesforce.com/display/ESVC/Infrastructure#Infrastructure-SettingsXML)
+Generate nexus credentials to download repos for maven [here](https://nexus-dev.data.sfdc.net/nexus/)
 
+Click Profile, generate creds if not already.
+
+Clone `https://git.soma.salesforce.com/service-cloud-realtime/scrt2-pod`
+
+cd into and run 
+
+`make maven`
+
+This will setup your ~/.m2/settings.xml and import certs for you
 ## Config
 
 ```
@@ -21,23 +30,23 @@ TODO: update below to proper latest nexus settings
 <servers>
     <server>
         <id>central</id>
-        <username>Si4vhkEz</username>
-        <password>UiYxKrZeBp5cgwztvIzw3AEPwDl2IcVel/mKTgYVgEJ+</password>
+        <username>2YR6ZS3I</username>
+        <password>iwBcee-Rz-oeXzXyoJdhg4ijS_kbMOyvirOLxk75y3Ax</password>
     </server>
     <server>
         <id>sfdc.sharedlibs</id>
-        <username>Si4vhkEz</username>
-        <password>UiYxKrZeBp5cgwztvIzw3AEPwDl2IcVel/mKTgYVgEJ+</password>
+        <username>2YR6ZS3I</username>
+        <password>iwBcee-Rz-oeXzXyoJdhg4ijS_kbMOyvirOLxk75y3Ax</password>
     </server>
     <server>
         <id>core</id>
-        <username>Si4vhkEz</username>
-        <password>UiYxKrZeBp5cgwztvIzw3AEPwDl2IcVel/mKTgYVgEJ+</password>
+        <username>2YR6ZS3I</username>
+        <password>iwBcee-Rz-oeXzXyoJdhg4ijS_kbMOyvirOLxk75y3Ax</password>
 </server>
     <server>
         <id>nexus</id>
-        <username>Si4vhkEz</username>
-        <password>UiYxKrZeBp5cgwztvIzw3AEPwDl2IcVel/mKTgYVgEJ+</password>
+        <username>2YR6ZS3I</username>
+        <password>iwBcee-Rz-oeXzXyoJdhg4ijS_kbMOyvirOLxk75y3Ax</password>
     </server>
 </servers>
   <profiles>
@@ -51,13 +60,13 @@ TODO: update below to proper latest nexus settings
       <repositories>
         <repository>
           <id>central</id>
-          <url>https://nexus.soma.salesforce.com/nexus/content/groups/public/</url>
+          <url>https://nexus-dev.data.sfdc.net/nexus/content/groups/public/</url>
         </repository>
       </repositories>
       <pluginRepositories>
         <pluginRepository>
           <id>central</id>
-          <url>https://nexus.soma.salesforce.com/nexus/content/groups/public/</url>
+          <url>https://nexus-dev.data.sfdc.net/nexus/content/groups/public/</url>
         </pluginRepository>
       </pluginRepositories>
     </profile>
@@ -71,10 +80,9 @@ TODO: update below to proper latest nexus settings
     <mirror>
       <id>nexus</id>
       <mirrorOf>*,!core,!staging,!snapshots,!sfdc.sharedlibs</mirrorOf>
-      <url>https://nexus-proxy-prd.soma.salesforce.com/nexus/content/groups/public/</url>
-      <!-- <url>https://nexus.soma.salesforce.com/nexus/content/groups/public/</url> -->
+      <url>https://nexus-proxy.repo.local.sfdc.net/nexus/content/groups/public/</url>
+      <!-- <url>https://nexus-dev.data.sfdc.net/nexus/content/groups/public/</url> -->
     </mirror>
   </mirrors>
 </settings>
-
 ```
